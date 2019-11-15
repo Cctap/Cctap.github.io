@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -50,15 +52,15 @@
   };
 </script>
 
-  <meta name="description" content="这是个我搞了蛮久的问题第一步​        可能是因为hexo还是Git更新的原因，传统的markdown的运用相对路径来显示图片的方法不兼容了，不过你自己在编辑软件中用传统方法还是能显示的，如typora，本人亲试看得见，hhhhh。。 ​        所以我们换给方式，首先安装插件：使用Git bash运行：  npm install https:&#x2F;&#x2F;github.com&#x2F;7ym0n&#x2F;he">
+  <meta name="description" content="这是个我搞了蛮久的问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决hexo图片无法网页无法显示">
 <meta property="og:url" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="这是个我搞了蛮久的问题第一步​        可能是因为hexo还是Git更新的原因，传统的markdown的运用相对路径来显示图片的方法不兼容了，不过你自己在编辑软件中用传统方法还是能显示的，如typora，本人亲试看得见，hhhhh。。 ​        所以我们换给方式，首先安装插件：使用Git bash运行：  npm install https:&#x2F;&#x2F;github.com&#x2F;7ym0n&#x2F;he">
+<meta property="og:description" content="这是个我搞了蛮久的问题">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA&#x2F;%60@6AMAI_2P%5DW7WA36)($A3V.png">
-<meta property="og:updated_time" content="2019-11-15T12:29:27.186Z">
+<meta property="og:updated_time" content="2019-11-15T16:02:52.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA&#x2F;%60@6AMAI_2P%5DW7WA36)($A3V.png">
 
@@ -197,10 +199,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2019-11-15 20:02:45 / Modified: 20:29:27" itemprop="dateCreated datePublished" datetime="2019-11-15T20:02:45+08:00">2019-11-15</time>
+              <time title="Created: 2019-11-15 20:02:45" itemprop="dateCreated datePublished" datetime="2019-11-15T20:02:45+08:00">2019-11-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2019-11-16 00:02:52" itemprop="dateModified" datetime="2019-11-16T00:02:52+08:00">2019-11-16</time>
+              </span>
 
           
 
@@ -213,7 +221,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="这是个我搞了蛮久的问题"><a href="#这是个我搞了蛮久的问题" class="headerlink" title="这是个我搞了蛮久的问题"></a>这是个我搞了蛮久的问题</h1><h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>​        可能是因为hexo还是Git更新的原因，传统的markdown的运用相对路径来显示图片的方法不兼容了，不过你自己在编辑软件中用传统方法还是能显示的，如typora，本人亲试看得见，hhhhh。。</p>
+        <h1 id="这是个我搞了蛮久的问题"><a href="#这是个我搞了蛮久的问题" class="headerlink" title="这是个我搞了蛮久的问题"></a>这是个我搞了蛮久的问题</h1><a id="more"></a>
+
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>​        可能是因为hexo还是Git更新的原因，传统的markdown的运用相对路径来显示图片的方法不兼容了，不过你自己在编辑软件中用传统方法还是能显示的，如typora，本人亲试看得见，hhhhh。。</p>
 <p>​        所以我们换给方式，首先安装插件：使用Git bash运行：</p>
 <blockquote>
 <p>npm install <a href="https://github.com/7ym0n/hexo-asset-image" target="_blank" rel="noopener">https://github.com/7ym0n/hexo-asset-image</a> –save</p>
@@ -387,5 +397,6 @@
 
   
 
+<script src="https://cctap.github.io/live2d-widget-master/autoload.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/haru01.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"log":false});</script></body>
 </html>
