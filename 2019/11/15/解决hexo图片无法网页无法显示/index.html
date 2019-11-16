@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css"/>
@@ -22,7 +22,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '7.5.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
@@ -40,13 +40,13 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: '',
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
@@ -56,9 +56,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="解决hexo图片无法网页无法显示">
 <meta property="og:url" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA&#x2F;index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Cctapblog">
 <meta property="og:description" content="这是个我搞了蛮久的问题">
-<meta property="og:locale" content="en">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2019&#x2F;11&#x2F;15&#x2F;%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA&#x2F;%60@6AMAI_2P%5DW7WA36)($A3V.png">
 <meta property="og:updated_time" content="2019-11-16T02:06:40.964Z">
 <meta name="twitter:card" content="summary">
@@ -78,7 +78,7 @@
   };
 </script>
 
-  <title>解决hexo图片无法网页无法显示 | Hexo</title>
+  <title>解决hexo图片无法网页无法显示 | Cctapblog</title>
   
 
 
@@ -122,14 +122,14 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Cctapblog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
   </div>
 
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -143,17 +143,42 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
@@ -176,7 +201,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://Cctap.github.io/2019/11/15/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -186,7 +211,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Cctapblog">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -198,16 +223,16 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2019-11-15 20:02:45" itemprop="dateCreated datePublished" datetime="2019-11-15T20:02:45+08:00">2019-11-15</time>
+              <time title="创建时间：2019-11-15 20:02:45" itemprop="dateCreated datePublished" datetime="2019-11-15T20:02:45+08:00">2019-11-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-11-16 10:06:40" itemprop="dateModified" datetime="2019-11-16T10:06:40+08:00">2019-11-16</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-16 10:06:40" itemprop="dateModified" datetime="2019-11-16T10:06:40+08:00">2019-11-16</time>
               </span>
 
           
@@ -285,10 +310,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -311,7 +336,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">3</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
   </nav>
@@ -342,10 +367,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">cyf</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
   </div>
 
         
@@ -371,7 +396,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
 
@@ -380,6 +405,8 @@
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 
@@ -398,5 +425,5 @@
   
 
 <script src="https://cctap.github.io/live2d-widget-master/autoload.js"></script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-z16"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
 </html>
