@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>maven仓库安装与配置</title>
+    <url>/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="maven安装与配置"><a href="#maven安装与配置" class="headerlink" title="maven安装与配置"></a>maven安装与配置</h1><a id="more"></a>
+
+<h2 id="下载maven"><a href="#下载maven" class="headerlink" title="下载maven"></a>下载maven</h2><p>1.进入<a href="https://www.apache.org/" target="_blank" rel="noopener">Apache官网</a>。ps：不科学上网连接比较慢。</p>
+<p>2.拉到最下方选择Maven进入,如下图：</p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422195110.jpg" alt></p>
+<p>3.选择download：</p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422195342.jpg" alt></p>
+<p>4.选择如下项进行下载：</p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422195426.jpg" alt></p>
+<h2 id="解压并新建一个本地仓库文件"><a href="#解压并新建一个本地仓库文件" class="headerlink" title="解压并新建一个本地仓库文件"></a>解压并新建一个本地仓库文件</h2><p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422195953.jpg" alt></p>
+<p>2.配置conf文件夹中的settings.xml文件：</p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422200237.jpg" alt></p>
+<p>在大概55行处添加</p>
+<p>​    <code>&lt;localRepository&gt;自己maven所在目录&lt;/localRepository&gt;</code></p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422200518.jpg" alt></p>
+<p>​    在大概159行，<mirrors>标签下添加：</mirrors></p>
+<p><code>&lt;mirror&gt;</code><br>　　  <code>&lt;id&gt;alimaven&lt;/id&gt;</code><br>　　  <code>&lt;mirrorOf&gt;central&lt;/mirrorOf&gt;</code><br>　　  <code>&lt;name&gt;aliyun maven&lt;/name&gt;</code><br>　　  <code>&lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;</code><br><code>&lt;/mirror&gt;</code></p>
+<p><img src="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/QQ%E6%88%AA%E5%9B%BE20200422200844.jpg" alt></p>
+<h2 id="配置Maven环境变量"><a href="#配置Maven环境变量" class="headerlink" title="配置Maven环境变量"></a>配置Maven环境变量</h2><p>过程和java环境变量没什么区别,这里就不多说过程操作了。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>历战王猎杀</title>
     <url>/2019/12/25/lizhanhunter/</url>
     <content><![CDATA[<h1 id="历战王猎杀过程："><a href="#历战王猎杀过程：" class="headerlink" title="历战王猎杀过程："></a>历战王猎杀过程：</h1><a id="more"></a>
@@ -14,6 +38,8 @@
 <p>ps：骚套路指眠爆，然后回归玉回家，再去眠爆。反复如此，然后死亡。</p>
 <h2 id="2-历战王冥灯龙"><a href="#2-历战王冥灯龙" class="headerlink" title="2.历战王冥灯龙"></a>2.历战王冥灯龙</h2><p><img src="/2019/12/25/lizhanhunter/20191227000504_1.jpg" alt></p>
 <p>在他第一形态的时候用扩散加转身衣打出伤害，将其打成第二形态，然后换贯穿弹打。</p>
+<p><img src="/2019/12/25/lizhanhunter/20200101163632_1.jpg" alt></p>
+<p>打法没变，就是武器换了。</p>
 <h2 id="3-历战王钢龙"><a href="#3-历战王钢龙" class="headerlink" title="3.历战王钢龙"></a>3.历战王钢龙</h2><p><img src="/2019/12/25/lizhanhunter/20191227220426_1.jpg" alt></p>
 <p>没什么好说的，就是猥琐流散弹，嘿嘿额嘿嘿。。。。</p>
 <h2 id="4-历战王炎王龙"><a href="#4-历战王炎王龙" class="headerlink" title="4.历战王炎王龙"></a>4.历战王炎王龙</h2><p><img src="/2019/12/25/lizhanhunter/20191228134404_1.jpg" alt></p>
