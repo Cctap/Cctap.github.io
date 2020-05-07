@@ -1,6 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hadoop节点退役</title>
+    <url>/2020/05/07/hadoop%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9/</url>
+    <content><![CDATA[<h1 id="节点退役"><a href="#节点退役" class="headerlink" title="节点退役"></a>节点退役</h1><a id="more"></a>
+
+<h2 id="添加白名单"><a href="#添加白名单" class="headerlink" title="添加白名单"></a>添加白名单</h2><p>添加到白名单的主机节点，都允许访问 NameNode，不在白名单的主机节点，都会被退 </p>
+<p>出。 </p>
+<p>配置白名单的具体步骤如下： </p>
+<p>（1）在 NameNode 的/opt/module/hadoop-2.7.2/etc/hadoop 目录下创建 dfs.hosts 文件 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ pwd </p>
+<p>/opt/module/hadoop-2.7.2/etc/hadoop </p>
+<p>[atguigu@hadoop102 hadoop]$ touch dfs.hosts </p>
+<p>[atguigu@hadoop102 hadoop]$ vi dfs.hosts </p>
+</blockquote>
+<p>添加如下主机名称（不添加 hadoop105） </p>
+<blockquote>
+<p>hadoop102 </p>
+<p>hadoop103 </p>
+<p>hadoop104 </p>
+</blockquote>
+<p>（2）在 NameNode 的 hdfs-site.xml 配置文件中增加 dfs.hosts 属性 </p>
+<blockquote>
+<property> 
+
+<p><name>dfs.hosts</name> </p>
+<p><value>/opt/module/hadoop-2.7.2/etc/hadoop/dfs.hosts</value> </p>
+</property> 
+</blockquote>
+<p>（3）配置文件分发 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ xsync hdfs-site.xml </p>
+</blockquote>
+<p>（4）刷新 NameNode </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ hdfs dfsadmin -refreshNodes </p>
+</blockquote>
+<p>Refresh nodes successful </p>
+<p>（5）更新 ResourceManager 节点 </p>
+<blockquote>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ yarn rmadmin -refreshNodes </p>
+</blockquote>
+<p>17/06/24 14:17:11 INFO client.RMProxy: Connecting to  </p>
+<p>ResourceManager at hadoop103/192.168.1.103:8033 </p>
+</blockquote>
+<ol start="4">
+<li>如果数据不均衡，可以用命令实现集群的再平衡 </li>
+</ol>
+<blockquote>
+<p>[atguigu@hadoop102 sbin]$ ./start-balancer.sh </p>
+<p>starting balancer, logging to /opt/module/hadoop- </p>
+<p>2.7.2/logs/hadoop-atguigu-balancer-hadoop102.out </p>
+<p>Time Stamp Iteration# Bytes Already Moved Bytes  </p>
+<p>Left To Move Bytes Being Moved </p>
+</blockquote>
+<h2 id="黑名单退役"><a href="#黑名单退役" class="headerlink" title="黑名单退役"></a>黑名单退役</h2><p>在黑名单上面的主机都会被强制退出。 </p>
+<p>\1. 在 NameNode 的 /opt/module/hadoop-2.7.2/etc/hadoop 目 录 下 创 建 dfs.hosts.exclude 文件 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ pwd </p>
+<p>/opt/module/hadoop-2.7.2/etc/hadoop </p>
+<p>[atguigu@hadoop102 hadoop]$ touch dfs.hosts.exclude </p>
+<p>[atguigu@hadoop102 hadoop]$ vi dfs.hosts.exclude </p>
+</blockquote>
+<p>添加如下主机名称（要退役的节点） </p>
+<blockquote>
+<p>hadoop105 </p>
+</blockquote>
+<p>2．在 NameNode 的 hdfs-site.xml 配置文件中增加 dfs.hosts.exclude 属性 </p>
+<blockquote>
+<property> 
+
+<p><name>dfs.hosts.exclude</name> </p>
+<p> <value>/opt/module/hadoop- 2.7.2/etc/hadoop/dfs.hosts.exclude</value> </p>
+</property> 
+</blockquote>
+<p>3．刷新 NameNode、刷新 ResourceManager </p>
+<blockquote>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ hdfs dfsadmin -refreshNodes </p>
+</blockquote>
+<p>Refresh nodes successful </p>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ yarn rmadmin -refreshNodes </p>
+<p>17/06/24 14:55:56 INFO client.RMProxy: Connecting to  ResourceManager at hadoop103/192.168.1.103:8033 </p>
+</blockquote>
+<p>\4. 检查 Web 浏览器，退役节点的状态为 decommission in progress（退役中）， </p>
+<p>说明数据节点正在复制块到其他节点</p>
+<p>\5. 等待退役节点状态为 decommissioned（所有块已经复制完成），停止该节点及 </p>
+<p>节点资源管理器。注意：如果副本数是 3，服役的节点小于等于 3，是不能退役 </p>
+<p>成功的，需要修改副本数后才能退役</p>
+<blockquote>
+<p>[atguigu@hadoop105 hadoop-2.7.2]$ sbin/hadoop-daemon.sh  stop datanode</p>
+</blockquote>
+<p>stopping datanode </p>
+<blockquote>
+<p>[atguigu@hadoop105 hadoop-2.7.2]$ sbin/yarn-daemon.sh stop  nodemanager </p>
+</blockquote>
+<p>stopping nodemanager </p>
+<p>\6. 如果数据不均衡，可以用命令实现集群的再平衡 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ sbin/start-balancer.sh  </p>
+<p>starting balancer, logging to /opt/module/hadoop- 2.7.2/logs/hadoop-atguigu-balancer-hadoop102.out </p>
+<p>Time Stamp Iteration# Bytes Already Moved  Bytes Left To Move Bytes Being Moved </p>
+</blockquote>
+<hr>
+<p><strong>注意：不允许白名单和黑名单中同时出现同一个主机名称。</strong> </p>
+]]></content>
+  </entry>
+  <entry>
     <title>maven仓库安装与配置</title>
     <url>/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="maven安装与配置"><a href="#maven安装与配置" class="headerlink" title="maven安装与配置"></a>maven安装与配置</h1><a id="more"></a>
@@ -53,15 +161,6 @@
 <p><img src="/2019/12/25/lizhanhunter/20191231214513_1.jpg" alt></p>
 <h2 id="7-历战王炎妃龙"><a href="#7-历战王炎妃龙" class="headerlink" title="7.历战王炎妃龙"></a>7.历战王炎妃龙</h2><p><img src="/2019/12/25/lizhanhunter/20191230121114_1.jpg" alt></p>
 <p>耳塞冰弓，把他引到落石区打，稳住就好，具体过程看b站视频的。其实耳塞不太需要。知识我刚好耳塞弓箭火耐性高所以就直接拿来换成了冰弓，其实可以带其他的。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>myflag</title>
-    <url>/2019/11/16/text/</url>
-    <content><![CDATA[<h1 id="myflag"><a href="#myflag" class="headerlink" title="myflag"></a>myflag</h1><p>​        今天之后重新开始大数据hadoop的学习，并持续更新学习相关的博客！！！！</p>
-<p>goodgoodhard！！！！！</p>
-<p>​        我在bilibili学习。。。。</p>
-<p><a href="https://space.bilibili.com/434908871" target="_blank" rel="noopener">我的bilibili</a></p>
 ]]></content>
   </entry>
   <entry>

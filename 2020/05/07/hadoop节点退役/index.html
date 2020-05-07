@@ -52,16 +52,17 @@
   };
 </script>
 
-  <meta name="description" content="学习大数据的小菜鸡一个">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cctapblog">
-<meta property="og:url" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;archives&#x2F;index.html">
+  <meta name="description" content="节点退役">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hadoop节点退役">
+<meta property="og:url" content="http:&#x2F;&#x2F;cctap.github.io&#x2F;2020&#x2F;05&#x2F;07&#x2F;hadoop%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9&#x2F;index.html">
 <meta property="og:site_name" content="Cctapblog">
-<meta property="og:description" content="学习大数据的小菜鸡一个">
+<meta property="og:description" content="节点退役">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-05-07T01:07:25.030Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://cctap.github.io/archives/">
+<link rel="canonical" href="http://cctap.github.io/2020/05/07/hadoop%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9/">
 
 
 <script id="page-configurations">
@@ -69,13 +70,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | Cctapblog</title>
+  <title>hadoop节点退役 | Cctapblog</title>
   
 
 
@@ -195,152 +196,184 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 6 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://Cctap.github.io/2020/05/07/hadoop%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="cyf">
+      <meta itemprop="description" content="学习大数据的小菜鸡一个">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cctapblog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          hadoop节点退役
+        </h1>
+
+        <div class="post-meta">
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-07 08:47:37 / 修改时间：09:07:25" itemprop="dateCreated datePublished" datetime="2020-05-07T08:47:37+08:00">2020-05-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
-    </div>
+        <h1 id="节点退役"><a href="#节点退役" class="headerlink" title="节点退役"></a>节点退役</h1><a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h2 id="添加白名单"><a href="#添加白名单" class="headerlink" title="添加白名单"></a>添加白名单</h2><p>添加到白名单的主机节点，都允许访问 NameNode，不在白名单的主机节点，都会被退 </p>
+<p>出。 </p>
+<p>配置白名单的具体步骤如下： </p>
+<p>（1）在 NameNode 的/opt/module/hadoop-2.7.2/etc/hadoop 目录下创建 dfs.hosts 文件 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ pwd </p>
+<p>/opt/module/hadoop-2.7.2/etc/hadoop </p>
+<p>[atguigu@hadoop102 hadoop]$ touch dfs.hosts </p>
+<p>[atguigu@hadoop102 hadoop]$ vi dfs.hosts </p>
+</blockquote>
+<p>添加如下主机名称（不添加 hadoop105） </p>
+<blockquote>
+<p>hadoop102 </p>
+<p>hadoop103 </p>
+<p>hadoop104 </p>
+</blockquote>
+<p>（2）在 NameNode 的 hdfs-site.xml 配置文件中增加 dfs.hosts 属性 </p>
+<blockquote>
+<property> 
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-07T08:47:37+08:00"
-              content="2020-05-07">
-          05-07
-        </time>
-      </div>
+<p><name>dfs.hosts</name> </p>
+<p><value>/opt/module/hadoop-2.7.2/etc/hadoop/dfs.hosts</value> </p>
+</property> 
+</blockquote>
+<p>（3）配置文件分发 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ xsync hdfs-site.xml </p>
+</blockquote>
+<p>（4）刷新 NameNode </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ hdfs dfsadmin -refreshNodes </p>
+</blockquote>
+<p>Refresh nodes successful </p>
+<p>（5）更新 ResourceManager 节点 </p>
+<blockquote>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ yarn rmadmin -refreshNodes </p>
+</blockquote>
+<p>17/06/24 14:17:11 INFO client.RMProxy: Connecting to  </p>
+<p>ResourceManager at hadoop103/192.168.1.103:8033 </p>
+</blockquote>
+<ol start="4">
+<li>如果数据不均衡，可以用命令实现集群的再平衡 </li>
+</ol>
+<blockquote>
+<p>[atguigu@hadoop102 sbin]$ ./start-balancer.sh </p>
+<p>starting balancer, logging to /opt/module/hadoop- </p>
+<p>2.7.2/logs/hadoop-atguigu-balancer-hadoop102.out </p>
+<p>Time Stamp Iteration# Bytes Already Moved Bytes  </p>
+<p>Left To Move Bytes Being Moved </p>
+</blockquote>
+<h2 id="黑名单退役"><a href="#黑名单退役" class="headerlink" title="黑名单退役"></a>黑名单退役</h2><p>在黑名单上面的主机都会被强制退出。 </p>
+<p>\1. 在 NameNode 的 /opt/module/hadoop-2.7.2/etc/hadoop 目 录 下 创 建 dfs.hosts.exclude 文件 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop]$ pwd </p>
+<p>/opt/module/hadoop-2.7.2/etc/hadoop </p>
+<p>[atguigu@hadoop102 hadoop]$ touch dfs.hosts.exclude </p>
+<p>[atguigu@hadoop102 hadoop]$ vi dfs.hosts.exclude </p>
+</blockquote>
+<p>添加如下主机名称（要退役的节点） </p>
+<blockquote>
+<p>hadoop105 </p>
+</blockquote>
+<p>2．在 NameNode 的 hdfs-site.xml 配置文件中增加 dfs.hosts.exclude 属性 </p>
+<blockquote>
+<property> 
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/05/07/hadoop%E8%8A%82%E7%82%B9%E9%80%80%E5%BD%B9/" itemprop="url">
-            <span itemprop="name">hadoop节点退役</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-22T11:22:03+08:00"
-              content="2020-04-22">
-          04-22
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">maven仓库安装与配置</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-12-25T22:12:15+08:00"
-              content="2019-12-25">
-          12-25
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/12/25/lizhanhunter/" itemprop="url">
-            <span itemprop="name">历战王猎杀</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-16T17:13:42+08:00"
-              content="2019-11-16">
-          11-16
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/16/mywifes/" itemprop="url">
-            <span itemprop="name">mywifes</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-15T20:02:45+08:00"
-              content="2019-11-15">
-          11-15
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/15/%E8%A7%A3%E5%86%B3hexo%E5%9B%BE%E7%89%87%E6%97%A0%E6%B3%95%E7%BD%91%E9%A1%B5%E6%97%A0%E6%B3%95%E6%98%BE%E7%A4%BA/" itemprop="url">
-            <span itemprop="name">解决hexo图片无法网页无法显示</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-11T18:23:10+08:00"
-              content="2019-11-11">
-          11-11
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/11/11/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
+<p><name>dfs.hosts.exclude</name> </p>
+<p> <value>/opt/module/hadoop- 2.7.2/etc/hadoop/dfs.hosts.exclude</value> </p>
+</property> 
+</blockquote>
+<p>3．刷新 NameNode、刷新 ResourceManager </p>
+<blockquote>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ hdfs dfsadmin -refreshNodes </p>
+</blockquote>
+<p>Refresh nodes successful </p>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ yarn rmadmin -refreshNodes </p>
+<p>17/06/24 14:55:56 INFO client.RMProxy: Connecting to  ResourceManager at hadoop103/192.168.1.103:8033 </p>
+</blockquote>
+<p>\4. 检查 Web 浏览器，退役节点的状态为 decommission in progress（退役中）， </p>
+<p>说明数据节点正在复制块到其他节点</p>
+<p>\5. 等待退役节点状态为 decommissioned（所有块已经复制完成），停止该节点及 </p>
+<p>节点资源管理器。注意：如果副本数是 3，服役的节点小于等于 3，是不能退役 </p>
+<p>成功的，需要修改副本数后才能退役</p>
+<blockquote>
+<p>[atguigu@hadoop105 hadoop-2.7.2]$ sbin/hadoop-daemon.sh  stop datanode</p>
+</blockquote>
+<p>stopping datanode </p>
+<blockquote>
+<p>[atguigu@hadoop105 hadoop-2.7.2]$ sbin/yarn-daemon.sh stop  nodemanager </p>
+</blockquote>
+<p>stopping nodemanager </p>
+<p>\6. 如果数据不均衡，可以用命令实现集群的再平衡 </p>
+<blockquote>
+<p>[atguigu@hadoop102 hadoop-2.7.2]$ sbin/start-balancer.sh  </p>
+<p>starting balancer, logging to /opt/module/hadoop- 2.7.2/logs/hadoop-atguigu-balancer-hadoop102.out </p>
+<p>Time Stamp Iteration# Bytes Already Moved  Bytes Left To Move Bytes Being Moved </p>
+</blockquote>
+<hr>
+<p><strong>注意：不允许白名单和黑名单中同时出现同一个主机名称。</strong> </p>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/04/22/maven%E4%BB%93%E5%BA%93%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" rel="next" title="maven仓库安装与配置">
+                  <i class="fa fa-chevron-left"></i> maven仓库安装与配置
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
@@ -369,6 +402,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#节点退役"><span class="nav-number">1.</span> <span class="nav-text">节点退役</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加白名单"><span class="nav-number">1.1.</span> <span class="nav-text">添加白名单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#黑名单退役"><span class="nav-number">1.2.</span> <span class="nav-text">黑名单退役</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
